@@ -6,9 +6,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { NavLink } from 'react-router-dom';
 
-
-
-
 const useStyles = makeStyles((theme) => ({
     AppBar: {
       backgroundColor: "#fff"
@@ -30,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "3em"
       }
     },
+    NavLink: {
+      textDecoration: "none",
+    }
     
 }));
 
@@ -41,7 +41,7 @@ function Header() {
            <AppBar className={classes.AppBar} position="static">
                 <Toolbar>
                     <Typography variant="h6" color="primary">
-                      <NavLink to="/blog">React Blog</NavLink>
+                      <NavLink to="/blog"  className={classes.NavLink}>React Blog</NavLink>
                     </Typography>
                 </Toolbar>
             </AppBar>

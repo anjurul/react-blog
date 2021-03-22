@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Blog = (props) => {
   
-    const classes = useStyles();
+  const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const {id, author, image, avatar, urlToImage, title, description, publishDate, likes} = props.blog
@@ -71,65 +71,61 @@ export const Blog = (props) => {
     setExpanded(!expanded);
   };
     return (
-        <>
-           <Container maxWidth="lg" className={classes.blogContainer}>
-               <Grid   container spacing={3}>
-                   <Grid  item xs={12} sm={6} md={4}>
-                        <Card className={classes.card}>
-                            <CardHeader
-                                avatar={
-                                    <Avatar aria-label="recipe" className={classes.avatar}
-                                    src={avatar} />
-                                
-                                }
-                                action={
-                                    <IconButton aria-label="settings">
-                                      <MoreVertIcon />
-                                    </IconButton>
-                                  }
-                                title={author}
-                                subheader={publishDate}
-                            />
-                            <CardMedia
-                                className={classes.media}
-                                image={urlToImage}
-                                title="Contemplative Reptile"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    <Link to={"blogDetails/"+id}>{title}</Link>
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                {description}
-                                </Typography>
-                            </CardContent>
-                            <CardActions disableSpacing className={CardActions} >
-                                <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon />
-                                </IconButton>
-                                <IconButton aria-label="share">
-                                    <ShareIcon />
-                                </IconButton>
-                                <IconButton 
-                                className={clsx(classes.expand, {
-                                    [classes.expandOpen]: expanded,
-                                })}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
-                                aria-label="show more"
-                                >
-                                    <CommentIcon/>
-                                </IconButton>
-                            </CardActions>
-                            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                <CardContent>
-                                  <Comments></Comments>
-                                </CardContent>
-                            </Collapse>
-                        </Card>
-                   </Grid>
-               </Grid>
-           </Container>
+        <>  
+          <Grid  item xs={12} sm={6} md={4}>
+              <Card  className={classes.card}>
+                  <CardHeader
+                      avatar={
+                          <Avatar aria-label="recipe" className={classes.avatar}
+                          src={avatar} />
+                      
+                      }
+                      action={
+                          <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                          </IconButton>
+                        }
+                      title={author}
+                      subheader={publishDate}
+                  />
+                  <CardMedia
+                      className={classes.media}
+                      image={urlToImage}
+                      title="Contemplative Reptile"
+                  />
+                  <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                          <Link to={"blogDetails/"+id}>{title}</Link>
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary" component="p">
+                      {description}
+                      </Typography>
+                  </CardContent>
+                  <CardActions disableSpacing className={CardActions} >
+                      <IconButton aria-label="add to favorites">
+                          <FavoriteIcon />
+                      </IconButton>
+                      <IconButton aria-label="share">
+                          <ShareIcon />
+                      </IconButton>
+                      <IconButton 
+                      className={clsx(classes.expand, {
+                          [classes.expandOpen]: expanded,
+                      })}
+                      onClick={handleExpandClick}
+                      aria-expanded={expanded}
+                      aria-label="show more"
+                      >
+                          <CommentIcon/>
+                      </IconButton>
+                  </CardActions>
+                  <Collapse in={expanded} timeout="auto" unmountOnExit>
+                      <CardContent>
+                        <Comments></Comments>
+                      </CardContent>
+                  </Collapse>
+              </Card>
+          </Grid>   
         </>
     )
 }

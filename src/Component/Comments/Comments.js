@@ -47,56 +47,66 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function Comments() {
-    const classes = useStyles();
-
+  
+    const classes = useStyles()
     const {postId} = useParams();
-
-    const first20 = fakeData.comments.slice(0,5);
     const [comments, setComments] = useState([]);
 
-    
-    
-        useEffect(() => {
-            const data = fakeData.comments.filter(comment => comment.postId === Number(postId));
-            setComments(data);
-            console.log(fakeData.comments);
-        }, []);
+    // This is for fetch api
+    // useEffect(() => {
+    //   fetch("https://jsonplaceholder.typicode.com/comments")
+    //   .then((data) => data.json())
+    //   .then((result) => {
+    //     const commentData = result.filter((comment) => Number(comment.postId) === Number(postId));
+    //     // console.log(commentData);
+    //     setComments(commentData);
+    //   });
+    // }, [])
+
+    useEffect(() => {
+      const commentData = fakeData.comments.filter((comment) => Number(comment.postId) === Number(postId));
+        
+        // console.log(commentData);
+        setComments(commentData);
+      
+    }, [])
+
 
     return (
         <>
-            <Container maxWidth="lg" className={classes.blogContainer}>
-                <Typography title variant="h3" component="h2">
-                    Comments
-                </Typography>
-                <Grid container spacing={3}> 
-                  <Grid  item  md={12}>  
-                    {
-                      comments.map((comment) => 
-                        <Card className={classes.card}>
-                            <CardHeader  
-                                avatar={
-                                    <Avatar aria-label="recipe" className={classes.avatar}
-                                    src={comment.avatar} />
-                                }
-                                
-                                title={comment.name}
-                                subheader={comment.publishDate}
+          <Container maxWidth="lg" className={classes.blogContainer}>
+              <Typography title variant="h3" component="h2">
+                  Comments
+              </Typography>
+              <Grid container spacing={3}>  
+                {
+                  comments.map((comment) => 
+                    <Grid  item  md={12}>  
+                      <Card className={classes.card}>
+                          <CardHeader  
+                              avatar={
+                                  <Avatar aria-label="recipe" className={classes.avatar}
+                                  src={comment.avatar} />
+                              }
+                              
+                              title={comment.name}
+                              subheader={comment.publishDate}
 
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h4" component="h4">
-                                    {comment.email}
-                                </Typography>
-                                <Typography paragraph color="textSecondary" component="p">
-                                    {comment.body}
-                                </Typography>
-                            </CardContent>
-                        </Card> 
-                      )
-                    }          
-                  </Grid>
-                </Grid>
-            </Container>
+                          />
+                          <CardContent>
+                              <Typography gutterBottom variant="h4" component="h4">
+                                  {comment.email}
+                              </Typography>
+                              <Typography paragraph color="textSecondary" component="p">
+                                  {comment.body}
+                              </Typography>
+                          </CardContent>
+                      </Card> 
+                    </Grid>
+                  )
+                }      
+              </Grid>
+          </Container>
         </>
     )
 }
